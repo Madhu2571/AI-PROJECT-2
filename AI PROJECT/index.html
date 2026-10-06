@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Smart Market Decision Assistant — Salem Uzhavar Sandhai Field Prototype</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Top Global Demonstration Alert -->
+  <div class="disclaimer-strip" role="alert">
+    <span>🌾 <strong>Demo Data — Prototype Demonstration:</strong> Developed for the Salem Uzhavar Sandhai, Dadagapatti field immersion study. Market figures and trends are simulated decision-support baselines, not live financial guarantees.</span>
+  </div>
+
+  <!-- Main Site Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-group">
+        <div class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>
+            AI Smart Market Decision Assistant
+            <span class="badge-tag badge-demo">Demo Prototype</span>
+          </h1>
+          <p class="brand-subtitle">Make better selling decisions with market, cost, demand and climate insights.</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button type="button" class="btn btn-outline btn-sm" id="btn-lang-toggle" title="Switch Language" style="padding: 4px 10px; font-size: 0.78rem;">
+          🌐 தமிழ் / English
+        </button>
+        <span class="badge-tag badge-field" title="Field Study Grounding">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          Salem Uzhavar Sandhai, Dadagapatti
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation Bar -->
+  <nav class="main-nav" aria-label="Primary Navigation">
+    <div class="nav-container">
+      <button class="nav-tab active" data-tab="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+        Dashboard
+      </button>
+
+      <button class="nav-tab" data-tab="comparison">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <line x1="18" y1="20" x2="18" y2="10"></line>
+          <line x1="12" y1="20" x2="12" y2="4"></line>
+          <line x1="6" y1="20" x2="6" y2="14"></line>
+        </svg>
+        Market Comparison
+        <span class="tab-badge" id="nav-mkt-count">6 Markets</span>
+      </button>
+
+      <button class="nav-tab" data-tab="trends">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+          <polyline points="16 7 22 7 22 13"></polyline>
+        </svg>
+        Price Trends
+      </button>
+
+      <button class="nav-tab" data-tab="surplus">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+        Surplus Buyers
+        <span class="tab-badge" id="nav-buyer-count">6 Matches</span>
+      </button>
+
+      <button class="nav-tab" data-tab="decisions">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+          <polyline points="17 21 17 13 7 13 7 21"></polyline>
+          <polyline points="7 3 7 8 15 8"></polyline>
+        </svg>
+        My Decisions & After Selling
+        <span class="tab-badge" id="nav-decisions-count">3</span>
+      </button>
+
+      <button class="nav-tab" data-tab="methods">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+        AI Methods & Field Context
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content View Area -->
+  <main class="page-container">
+
+    <!-- =================================================================== -->
+    <!-- SECTION 1: DASHBOARD -->
+    <!-- =================================================================== -->
+    <section id="view-dashboard" class="section-view active">
+      <div class="section-header">
+        <h2 class="section-title">
+          Selling Decision Assistant
+        </h2>
+        <p class="section-subtitle">
+          Compare markets, estimate net return and review selling conditions before making your decision.
+        </p>
+      </div>
+
+      <div class="grid-2col">
+        
+        <!-- Left Column: Input Form -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              Produce Details
+            </h3>
+            <span class="badge-tag badge-field">Inputs</span>
+          </div>
+
+          <div class="card-body">
+            <form id="form-produce-details" novalidate>
+              
+              <!-- Produce Selection -->
+              <div class="form-group">
+                <label for="input-produce" class="form-label">Produce Type <span class="req">*</span></label>
+                <select id="input-produce" class="form-control" required>
+                  <!-- Populated dynamically via JS -->
+                </select>
+                <div class="form-error" id="err-produceId">Please select a valid produce.</div>
+              </div>
+
+              <!-- Quantity Input -->
+              <div class="form-group">
+                <label for="input-quantity" class="form-label">Quantity (kg) <span class="req">*</span></label>
+                <input type="number" id="input-quantity" class="form-control" value="100" min="1" max="10000" step="1" required>
+                <div class="form-hint">Typical single trip farm load (e.g., 50 kg to 500 kg)</div>
+                <div class="form-error" id="err-quantity">Please enter a valid positive quantity.</div>
+              </div>
+
+              <!-- Vendor Location -->
+              <div class="form-group">
+                <label for="input-location" class="form-label">Current Location / Farm Base <span class="req">*</span></label>
+                <select id="input-location" class="form-control" required>
+                  <!-- Populated dynamically via JS -->
+                </select>
+                <div class="form-error" id="err-location">Please select your location.</div>
+              </div>
+
+              <!-- Selling Date -->
+              <div class="form-group">
+                <label for="input-selling-date" class="form-label">Selling Date <span class="req">*</span></label>
+                <input type="date" id="input-selling-date" class="form-control" required>
+                <div class="form-hint">Uzhavar Sandhai opens at 05:00 AM; morning arrival is critical.</div>
+                <div class="form-error" id="err-sellingDate">Please select a selling date.</div>
+              </div>
+
+              <!-- Costs Row: Transport & Other -->
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="input-transport-rate" class="form-label">Transport Cost / km (₹) <span class="req">*</span></label>
+                  <input type="number" id="input-transport-rate" class="form-control" value="10" min="0" step="1" required>
+                  <div class="form-hint">Auto / small lorry freight</div>
+                  <div class="form-error" id="err-transportCostPerKm">Enter a valid rate (₹ ≥ 0).</div>
+                </div>
+
+                <div class="form-group">
+                  <label for="input-other-costs" class="form-label">Other Costs (₹) <span class="req">*</span></label>
+                  <input type="number" id="input-other-costs" class="form-control" value="200" min="0" step="10" required>
+                  <div class="form-hint">Gunny bags, loading, porter</div>
+                  <div class="form-error" id="err-otherCosts">Enter other costs (₹ ≥ 0).</div>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-primary btn-block" id="btn-analyse">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                ANALYSE SELLING OPTIONS
+              </button>
+
+            </form>
+          </div>
+        </div>
+
+        <!-- Right Column: Results & Recommendation -->
+        <div class="results-column">
+
+          <!-- Climate Insight Card -->
+          <div class="climate-panel" id="climate-insight-panel">
+            <div class="climate-header">
+              <div class="climate-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2">
+                  <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
+                </svg>
+                Climate & Ambient Risk Insight
+              </div>
+              <div class="climate-tags">
+                <span class="tag-temp" id="climate-temp">29°C</span>
+                <span class="table-badge badge-risk-med" id="climate-risk-badge">Medium Risk</span>
+              </div>
+            </div>
+            <div class="climate-body" id="climate-desc">
+              Partly Cloudy with Afternoon Warmth in Salem urban belt.
+            </div>
+            <div class="climate-note" id="climate-impact-note">
+              <strong>Possible market impact:</strong> Changing weather conditions may affect supply and market conditions. Morning sandhai stall clearance before 10:30 AM minimizes perishable softening.
+            </div>
+          </div>
+
+          <!-- Highlight Recommendation: SELLING DECISION -->
+          <div class="recommendation-banner" id="recommendation-card">
+            <div class="rec-badge-row">
+              <span class="rec-pill">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                SELLING DECISION RECOMMENDATION
+              </span>
+              <span class="badge-tag badge-demo">Simulated Ranking</span>
+            </div>
+
+            <h3 class="rec-title" id="rec-market-name">Salem Uzhavar Sandhai (Dadagapatti)</h3>
+            <p class="rec-tamil" id="rec-market-tamil">தாதகாப்பட்டி உழவர் சந்தை</p>
+
+            <!-- Key Financials Strip -->
+            <div class="rec-metrics-strip">
+              <div class="rec-metric-item">
+                <div class="label">Expected Net Return</div>
+                <div class="val highlight-val" id="rec-net-return">₹3,071.80</div>
+              </div>
+              <div class="rec-metric-item">
+                <div class="label">Expected Price</div>
+                <div class="val" id="rec-price">₹33.60 / kg</div>
+              </div>
+              <div class="rec-metric-item">
+                <div class="label">Transport Cost</div>
+                <div class="val" id="rec-transport">₹21.00 (2.1 km)</div>
+              </div>
+              <div class="rec-metric-item">
+                <div class="label">Expected Wastage</div>
+                <div class="val" id="rec-wastage">2.0% (2.0 kg)</div>
+              </div>
+            </div>
+
+            <!-- Additional Factors Row -->
+            <div style="display: flex; gap: 16px; margin-bottom: 16px; font-size: 0.85rem;">
+              <div><strong>Demand:</strong> <span id="rec-demand" class="table-badge badge-high">High Consumer Demand</span></div>
+              <div><strong>Climate Risk:</strong> <span id="rec-risk" class="table-badge badge-risk-low">Low Risk (Covered Stall)</span></div>
+            </div>
+
+            <!-- "Why this option?" -->
+            <div class="rec-why-box">
+              <div class="rec-why-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+                Why this option?
+              </div>
+              <ul class="rec-why-list" id="rec-why-list">
+                <!-- Populated via JS -->
+              </ul>
+            </div>
+
+            <p class="rec-notice" id="rec-disclaimer">
+              * Recommended option based on current demo inputs. Estimate — actual market conditions may differ. The vendor always makes the final selling decision.
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="rec-actions">
+              <button type="button" class="btn btn-primary btn-sm" id="btn-save-decision">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                  <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                  <polyline points="7 3 7 8 15 8"></polyline>
+                </svg>
+                Save This Decision
+              </button>
+
+              <button type="button" class="btn btn-outline btn-sm" id="btn-view-all-comparison">
+                View Full Comparison Table →
+              </button>
+
+              <button type="button" class="btn btn-outline btn-sm" id="btn-view-rec-breakdown">
+                Detailed Cost Breakdown
+              </button>
+
+              <button type="button" class="btn btn-outline btn-sm" id="btn-print-slip">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                  <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                  <rect x="6" y="14" width="12" height="8"></rect>
+                </svg>
+                Print Sandhai Slip
+              </button>
+            </div>
+          </div>
+
+          <!-- Review 2 Enhancement: Interactive Sensitivity Simulator -->
+          <div class="sensitivity-card" id="sensitivity-simulator-card">
+            <div class="sensitivity-header">
+              <div class="sensitivity-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="4" y1="21" x2="4" y2="14"></line>
+                  <line x1="4" y1="10" x2="4" y2="3"></line>
+                  <line x1="12" y1="21" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12" y2="3"></line>
+                  <line x1="20" y1="21" x2="20" y2="16"></line>
+                  <line x1="20" y1="12" x2="20" y2="3"></line>
+                  <line x1="1" y1="14" x2="7" y2="14"></line>
+                  <line x1="9" y1="8" x2="15" y2="8"></line>
+                  <line x1="17" y1="16" x2="23" y2="16"></line>
+                </svg>
+                Live Profitability & Volume Sensitivity Simulator
+              </div>
+              <span class="badge-tag badge-demo">Interactive Stress Test</span>
+            </div>
+            
+            <p style="font-size: 0.80rem; color: var(--slate-600); margin-bottom: 12px;">
+              Simulate instant changes in harvest volume or retail realization to find your break-even threshold:
+            </p>
+
+            <div class="slider-group">
+              <div class="slider-label-row">
+                <span>Simulated Quantity: <strong id="sens-qty-display">100 kg</strong></span>
+                <span id="sens-qty-delta" style="color: var(--slate-500);">(Baseline load)</span>
+              </div>
+              <input type="range" class="slider-input" id="slider-quantity" min="20" max="400" step="10" value="100">
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-label-row">
+                <span>Price Shift: <strong id="sens-price-display">₹0 / kg</strong></span>
+                <span id="sens-price-delta" style="color: var(--slate-500);">(Mandi arrival fluctuation)</span>
+              </div>
+              <input type="range" class="slider-input" id="slider-price-shift" min="-10" max="15" step="1" value="0">
+            </div>
+
+            <div class="sensitivity-results-grid">
+              <div class="sens-metric-item">
+                <div class="sens-lbl">Simulated Net Return</div>
+                <div class="sens-val" id="sens-net-return" style="color: var(--primary-800);">₹3,071.80</div>
+              </div>
+              <div class="sens-metric-item">
+                <div class="sens-lbl">Return Variance</div>
+                <div class="sens-val" id="sens-variance-val">₹0.00</div>
+              </div>
+              <div class="sens-metric-item">
+                <div class="sens-lbl">Break-Even Volume</div>
+                <div class="sens-val" id="sens-breakeven-val">8.2 kg</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Top 3 Markets Snapshot Cards -->
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title" style="font-size: 0.95rem;">
+                Top Market Options Summary
+              </h4>
+              <span class="badge-tag badge-demo">Ranked by Net Return</span>
+            </div>
+            <div class="card-body" style="padding: 14px;">
+              <div id="top-markets-summary-list" style="display: flex; flex-direction: column; gap: 10px;">
+                <!-- Populated via JS -->
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =================================================================== -->
+    <!-- SECTION 2: MARKET COMPARISON -->
+    <!-- =================================================================== -->
+    <section id="view-comparison" class="section-view">
+      <div class="section-header">
+        <h2 class="section-title">
+          Regional Market Comparison
+        </h2>
+        <p class="section-subtitle">
+          Transparent multi-market evaluation considering distance, transport logistics, price realization, and transit wastage.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-header" style="flex-wrap: wrap; gap: 14px;">
+          <div>
+            <span style="font-size: 0.88rem; color: var(--slate-600);">Current Scenario: </span>
+            <strong id="comp-scenario-text" style="color: var(--slate-900);">100 kg Tomato from Dadagapatti</strong>
+          </div>
+
+          <!-- Sorting Controls -->
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <label for="select-sort-market" style="font-size: 0.84rem; font-weight: 600; color: var(--slate-700);">Sort by:</label>
+            <select id="select-sort-market" class="form-control" style="width: auto; padding: 6px 12px; font-size: 0.85rem;">
+              <option value="netReturn">Expected Net Return (High to Low)</option>
+              <option value="price">Market Price (High to Low)</option>
+              <option value="transport">Transport Cost (Low to High)</option>
+              <option value="distance">Distance (Nearest First)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="custom-table" id="table-market-comparison">
+            <thead>
+              <tr>
+                <th>Market Name</th>
+                <th>Distance</th>
+                <th>Price / kg</th>
+                <th>Gross Revenue</th>
+                <th>Transport Cost</th>
+                <th>Est. Wastage</th>
+                <th>Other Costs</th>
+                <th>Est. Net Return</th>
+                <th>Demand</th>
+                <th>Climate Risk</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-market-comparison">
+              <!-- Dynamically rendered -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card-footer" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <span style="font-size: 0.80rem; color: var(--slate-500);">
+            * Estimated Net Return = Gross Revenue − Transport Cost − Other Costs − Transit Wastage Loss
+          </span>
+          <button type="button" class="btn btn-outline btn-sm" id="btn-recalculate-all">
+            Refresh Calculations
+          </button>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =================================================================== -->
+    <!-- SECTION 3: PRICE TRENDS -->
+    <!-- =================================================================== -->
+    <section id="view-trends" class="section-view">
+      <div class="section-header">
+        <h2 class="section-title">
+          Price Trends & Short-Term Projections
+        </h2>
+        <p class="section-subtitle">
+          Review 10-day historical sandhai prices and estimated short-term trend based on harvest arrivals.
+        </p>
+      </div>
+
+      <!-- Controls & Summary Grid -->
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 14px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <label for="select-trend-produce" style="font-size: 0.90rem; font-weight: 600; color: var(--slate-800);">Select Produce:</label>
+          <select id="select-trend-produce" class="form-control" style="width: auto; padding: 8px 14px; font-weight: 600;">
+            <!-- Populated via JS -->
+          </select>
+        </div>
+
+        <span class="badge-tag badge-demo">
+          Demo Data — Prototype Demonstration
+        </span>
+      </div>
+
+      <!-- Metric Cards Grid -->
+      <div class="grid-3col" style="margin-bottom: 24px;">
+        <div class="trend-metric-card">
+          <div class="title">Current Price (Today)</div>
+          <div class="value" id="trend-metric-current">₹32.00 / kg</div>
+          <span class="trend-badge trend-up" id="trend-metric-direction">Slight Upward (+6.2%)</span>
+        </div>
+
+        <div class="trend-metric-card">
+          <div class="title">10-Day Historical Range</div>
+          <div class="value" style="font-size: 1.15rem; margin-top: 6px;">
+            <span id="trend-metric-min">₹26</span> - <span id="trend-metric-max">₹35 / kg</span>
+          </div>
+          <div style="font-size: 0.78rem; color: var(--slate-500); margin-top: 6px;">Average: <strong id="trend-metric-avg">₹30.6 / kg</strong></div>
+        </div>
+
+        <div class="trend-metric-card">
+          <div class="title">AI Trend Rationale</div>
+          <p id="trend-rationale-text" style="font-size: 0.83rem; color: var(--slate-700); margin-top: 6px; line-height: 1.4;">
+            Incoming arrivals from Rayakottai and Hosur belts expected to tighten slightly over the next 48 hours.
+          </p>
+        </div>
+      </div>
+
+      <!-- Interactive Chart Card -->
+      <div class="card" style="margin-bottom: 20px;">
+        <div class="card-header">
+          <h3 class="card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+              <polyline points="16 7 22 7 22 13"></polyline>
+            </svg>
+            Price Trajectory: Historical actuals vs Short-Term Estimate
+          </h3>
+          <div style="display: flex; gap: 16px; font-size: 0.80rem; font-weight: 600;">
+            <span style="display: flex; align-items: center; gap: 6px; color: #1b4332;">
+              <span style="width: 14px; height: 3px; background: #2d6a4f; display: inline-block;"></span> Historical
+            </span>
+            <span style="display: flex; align-items: center; gap: 6px; color: #b45309;">
+              <span style="width: 14px; height: 3px; background: #d97706; border-top: 2px dashed #d97706; display: inline-block;"></span> Projected Estimate
+            </span>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div id="price-trend-chart-container">
+            <!-- Rendered by trends.js -->
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <p style="font-size: 0.80rem; color: var(--slate-500); text-align: center;">
+            ⚠️ <strong>Disclaimer:</strong> Estimated trend is for prototype demonstration and is not a guarantee of future price. Actual market rates vary with real-time arrivals.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =================================================================== -->
+    <!-- SECTION 4: SURPLUS BUYERS -->
+    <!-- =================================================================== -->
+    <section id="view-surplus" class="section-view">
+      <div class="section-header">
+        <h2 class="section-title">
+          Surplus Buyer Matching
+        </h2>
+        <p class="section-subtitle">
+          Connect with verified commercial buyers, restaurants, and institutions in Salem to liquidate harvest surpluses.
+        </p>
+      </div>
+
+      <!-- Matching Search Form -->
+      <div class="card" style="margin-bottom: 24px;">
+        <div class="card-body">
+          <form id="form-surplus-matching" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) auto; gap: 16px; align-items: flex-end;">
+            
+            <div class="form-group" style="margin-bottom: 0;">
+              <label for="surplus-input-produce" class="form-label">Surplus Produce</label>
+              <select id="surplus-input-produce" class="form-control">
+                <!-- Options populated via JS -->
+              </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0;">
+              <label for="surplus-input-quantity" class="form-label">Available Surplus (kg)</label>
+              <input type="number" id="surplus-input-quantity" class="form-control" value="80" min="10" step="5">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0;">
+              <label for="surplus-input-location" class="form-label">Your Location</label>
+              <select id="surplus-input-location" class="form-control">
+                <!-- Options populated via JS -->
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="height: 42px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              FIND BUYERS
+            </button>
+
+          </form>
+        </div>
+      </div>
+
+      <!-- Matching Buyers Results -->
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <h3 style="font-size: 1.05rem; font-weight: 700; color: var(--slate-900);">
+            Matching Institutional & Commercial Buyers (<span id="matched-buyers-count">0</span>)
+          </h3>
+          <span class="badge-tag badge-demo">Simulated Buyer Profiles</span>
+        </div>
+
+        <div class="grid-cards" id="surplus-buyers-grid">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =================================================================== -->
+    <!-- SECTION 5: MY DECISIONS & AFTER SELLING -->
+    <!-- =================================================================== -->
+    <section id="view-decisions" class="section-view">
+      <div class="section-header">
+        <h2 class="section-title">
+          My Decisions & After Selling Feedback
+        </h2>
+        <p class="section-subtitle">
+          Track saved selling decisions and submit actual post-sale outcomes to evaluate model variance.
+        </p>
+      </div>
+
+      <!-- Saved Decisions Card -->
+      <div class="card" style="margin-bottom: 32px;">
+        <div class="card-header">
+          <h3 class="card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+              <polyline points="17 21 17 13 7 13 7 21"></polyline>
+              <polyline points="7 3 7 8 15 8"></polyline>
+            </svg>
+            Saved Selling Decisions History
+          </h3>
+          <span class="badge-tag badge-field" id="saved-decisions-badge">3 Records</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Produce</th>
+                <th>Quantity</th>
+                <th>Recommended Market</th>
+                <th>Expected Net Return</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-saved-decisions">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- After Selling Feedback Section -->
+      <div class="grid-2col">
+        
+        <!-- Feedback Form -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+              </svg>
+              Record After-Selling Actuals
+            </h3>
+          </div>
+
+          <div class="card-body">
+            <form id="form-after-selling" novalidate>
+              
+              <div class="form-group">
+                <label for="feedback-select-decision" class="form-label">Link to Saved Decision (Optional)</label>
+                <select id="feedback-select-decision" class="form-control">
+                  <option value="">-- Standalone Post-Sale Entry --</option>
+                  <!-- Populated via JS -->
+                </select>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="feedback-actual-price" class="form-label">Actual Selling Price (₹/kg) <span class="req">*</span></label>
+                  <input type="number" id="feedback-actual-price" class="form-control" placeholder="e.g. 34.0" step="0.5" required>
+                  <div class="form-error" id="err-actualPrice">Enter valid selling price.</div>
+                </div>
+
+                <div class="form-group">
+                  <label for="feedback-actual-qty" class="form-label">Actual Quantity Sold (kg) <span class="req">*</span></label>
+                  <input type="number" id="feedback-actual-qty" class="form-control" placeholder="e.g. 98" step="1" required>
+                  <div class="form-error" id="err-actualQty">Enter sold quantity.</div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="feedback-actual-wastage" class="form-label">Actual Wastage / Spoilage (kg) <span class="req">*</span></label>
+                  <input type="number" id="feedback-actual-wastage" class="form-control" value="2.0" step="0.5" required>
+                  <div class="form-error" id="err-actualWastage">Enter wastage in kg.</div>
+                </div>
+
+                <div class="form-group">
+                  <label for="feedback-actual-costs" class="form-label">Actual Total Costs (₹) <span class="req">*</span></label>
+                  <input type="number" id="feedback-actual-costs" class="form-control" placeholder="Transport + incidental" step="10" required>
+                  <div class="form-error" id="err-actualCosts">Enter actual expenses.</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="feedback-notes" class="form-label">Field Notes / Observations</label>
+                <textarea id="feedback-notes" class="form-control" rows="2" placeholder="e.g., Rain delayed morning buyers; clearance achieved by 11 AM."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-success btn-block" id="btn-submit-feedback">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M20 6L9 17l-5-5"></path>
+                </svg>
+                SUBMIT FEEDBACK
+              </button>
+
+              <div style="margin-top: 10px; font-size: 0.78rem; color: var(--slate-500); line-height: 1.4;">
+                ℹ️ Actual results can be used as feedback for future system improvement. (Prototype note: inputs are logged to local test storage; no live model retraining is triggered).
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+        <!-- Feedback History & Variance Comparison -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 14 14"></polyline>
+              </svg>
+              Estimated vs Actual Variance
+            </h3>
+            <span class="badge-tag badge-demo">Evaluation History</span>
+          </div>
+
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Market</th>
+                  <th>Actual Net</th>
+                  <th>Estimated Net</th>
+                  <th>Variance</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-feedback-history">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =================================================================== -->
+    <!-- SECTION 6: AI METHODS & FIELD STUDY CONTEXT -->
+    <!-- =================================================================== -->
+    <section id="view-methods" class="section-view">
+      <div class="section-header">
+        <h2 class="section-title">
+          Proposed AI Methods & Field Study Context
+        </h2>
+        <p class="section-subtitle">
+          Academic methodology and systemic grounding for the Salem Uzhavar Sandhai, Dadagapatti decision support prototype.
+        </p>
+      </div>
+
+      <!-- Field Study Context Card -->
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--primary-700);">
+        <div class="card-body">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--primary-900); margin-bottom: 8px;">
+            Field Study Background: Salem Uzhavar Sandhai, Dadagapatti
+          </h3>
+          <p style="font-size: 0.90rem; color: var(--slate-700); line-height: 1.6; margin-bottom: 12px;">
+            The Uzhavar Sandhai (Farmers' Market) at Dadagapatti, Salem was established to eliminate intermediary middlemen by providing direct marketing infrastructure for vegetable and fruit cultivators. However, smallholder vendors face multi-dimensional daily trade-offs:
+          </p>
+          <ul style="list-style: disc; margin-left: 20px; font-size: 0.88rem; color: var(--slate-700); line-height: 1.6;">
+            <li><strong>Time Windows:</strong> Uzhavar Sandhai operates in an early morning window (05:00 AM – 11:30 AM). Unsold stock faces severe distress pricing or transport back home.</li>
+            <li><strong>Transport vs Margin:</strong> Traveling to distant wholesale mandis (e.g. Attur or Leigh Bazaar) incurs higher transport costs and transit heat spoilage, even if buyer absorption capacity is higher.</li>
+            <li><strong>Weather Sensitivity:</strong> Sudden showers or excessive midday heat rapidly degrades perishable vine crops like tomatoes and greens.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3 Methods Grid -->
+      <div class="grid-3col">
+        
+        <!-- Method 1 -->
+        <div class="method-card">
+          <div class="method-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+          </div>
+          <h4 class="method-title">Gradient Boosting Regression</h4>
+          <p class="method-desc">
+            Used for short-term price and arrival volume estimation. Models multi-variate non-linear interactions between historical mandi arrivals, seasonal cycles, day-of-week demand patterns, and rainfall indicators.
+          </p>
+          <div class="method-tags">
+            <span class="method-tag">XGBoost / LightGBM</span>
+            <span class="method-tag">Time Series Lags</span>
+            <span class="method-tag">Price Trend Projection</span>
+          </div>
+        </div>
+
+        <!-- Method 2 -->
+        <div class="method-card">
+          <div class="method-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 20V10"></path>
+              <path d="M18 20V4"></path>
+              <path d="M6 20v-4"></path>
+            </svg>
+          </div>
+          <h4 class="method-title">Multi-Criteria Ranking Algorithm</h4>
+          <p class="method-desc">
+            Evaluates selling destinations across conflicting objectives using weighted utility theory (AHP / TOPSIS). Balances expected net monetary return against transit distance, perishable transit spoilage risk, and demand absorption speed.
+          </p>
+          <div class="method-tags">
+            <span class="method-tag">MCDA / AHP</span>
+            <span class="method-tag">Net Return Maximization</span>
+            <span class="method-tag">Perishable Risk Penalty</span>
+          </div>
+        </div>
+
+        <!-- Method 3 -->
+        <div class="method-card">
+          <div class="method-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"></path>
+            </svg>
+          </div>
+          <h4 class="method-title">Surplus Similarity Matching</h4>
+          <p class="method-desc">
+            Matches leftover or surplus harvest volume to registered commercial buyers (hotels, restaurants, canteens) using normalized Euclidean and cosine attribute matching on quantity compatibility, commodity type, and geographical proximity.
+          </p>
+          <div class="method-tags">
+            <span class="method-tag">Attribute Distance</span>
+            <span class="method-tag">Capacity Fit Score</span>
+            <span class="method-tag">B2B Food Offtake</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- =================================================================== -->
+  <!-- MODALS -->
+  <!-- =================================================================== -->
+
+  <!-- 1. Contact / Request Buyer Modal -->
+  <div class="modal-overlay" id="modal-buyer-contact" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Request Buyer Offtake</h3>
+        <button type="button" class="modal-close" id="btn-close-buyer-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="form-buyer-request" novalidate>
+          <input type="hidden" id="req-buyer-id">
+          
+          <div style="background-color: var(--slate-50); padding: 12px 14px; border-radius: var(--radius-sm); margin-bottom: 16px;">
+            <div style="font-size: 0.82rem; color: var(--slate-500); text-transform: uppercase; font-weight: 600;">Selected Buyer:</div>
+            <div id="req-buyer-display-name" style="font-size: 1.05rem; font-weight: 700; color: var(--slate-900);"></div>
+            <div id="req-buyer-display-terms" style="font-size: 0.80rem; color: var(--slate-600); margin-top: 2px;"></div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Produce</label>
+              <input type="text" id="req-produce-display" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Offered Qty (kg) <span class="req">*</span></label>
+              <input type="number" id="req-quantity-input" class="form-control" min="1" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Proposed Rate (₹/kg)</label>
+              <input type="number" id="req-rate-input" class="form-control" step="0.5">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Vendor Contact Phone <span class="req">*</span></label>
+              <input type="tel" id="req-phone-input" class="form-control" value="+91 98420 12345" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Message / Delivery Timing</label>
+            <textarea id="req-message-input" class="form-control" rows="2" placeholder="e.g. Ready for early morning delivery at Dadagapatti checkpoint by 06:30 AM."></textarea>
+          </div>
+
+          <div class="form-hint" style="margin-bottom: 16px;">
+            ℹ️ Prototype Notice: Clicking "Send Request" logs the transaction in the prototype session database. No external SMS or calls are dispatched.
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">
+            Send Request
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Cost Breakdown Modal -->
+  <div class="modal-overlay" id="modal-breakdown" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="breakdown-modal-title">Financial Calculation Breakdown</h3>
+        <button type="button" class="modal-close" id="btn-close-breakdown-modal">&times;</button>
+      </div>
+      <div class="modal-body" id="breakdown-modal-content">
+        <!-- Injected via JS -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline btn-sm" id="btn-dismiss-breakdown">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Sandhai Decision Slip Modal (Review 2 Physical Market Export) -->
+  <div class="modal-overlay" id="modal-sandhai-slip" role="dialog" aria-modal="true">
+    <div class="modal-dialog" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Salem Sandhai Decision Slip</h3>
+        <button type="button" class="modal-close" id="btn-close-slip-modal">&times;</button>
+      </div>
+      <div class="modal-body" id="slip-modal-body">
+        <!-- Rendered dynamically -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline btn-sm" id="btn-dismiss-slip">Close</button>
+        <button type="button" class="btn btn-primary btn-sm" id="btn-trigger-print">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+          </svg>
+          Print Physical Slip
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- JavaScript Scripts -->
+  <script src="js/errorBoundary.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/trends.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
